@@ -1,28 +1,16 @@
 part of 'gps_bloc.dart';
 
-abstract class GpsState extends Equatable {
+class GpsState extends Equatable {
   final bool? gpsStates;
+  final bool? isPermitionGranted;
 
-  const GpsState({this.gpsStates});
+  const GpsState({this.gpsStates, this.isPermitionGranted});
+
+  GpsState copyWith({bool? gpsStates, bool? isPermitionGranted}) => GpsState(
+        gpsStates: gpsStates ?? this.gpsStates,
+        isPermitionGranted: isPermitionGranted ?? this.isPermitionGranted,
+      );
 
   @override
-  List<Object> get props => [];
-}
-
-class GpsInitialState extends GpsState {
-  final bool? gpsStatus;
-
-  const GpsInitialState({this.gpsStatus});
-}
-
-class GpsIsOn extends GpsState {
-  const GpsIsOn() : super();
-}
-
-class GpsIsOff extends GpsState {
-  const GpsIsOff() : super();
-}
-
-class GpsPermissionIsGranted extends GpsState {
-  const GpsPermissionIsGranted() : super();
+  List<Object?> get props => [gpsStates, isPermitionGranted];
 }

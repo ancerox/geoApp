@@ -7,14 +7,14 @@ abstract class GpsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class TurnOnGps extends GpsEvent {
+class ChangeGpsState extends GpsEvent {
   final bool? gpsState;
 
-  const TurnOnGps({this.gpsState});
+  const ChangeGpsState({this.gpsState});
 }
 
-class TurnOffGps extends GpsEvent {
-  const TurnOffGps();
-}
+class ChangeGpsAccess extends GpsEvent {
+  final bool? isGranted;
 
-class AllowGpsAccessEvent extends GpsEvent {}
+  const ChangeGpsAccess({this.isGranted}) : super();
+}

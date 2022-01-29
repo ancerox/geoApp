@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geo_app/blocs/blocs.dart';
+
 import 'package:geo_app/injector.dart';
 import 'package:geo_app/screens/screens.dart';
 
@@ -9,6 +10,9 @@ void main() {
   runApp(MultiBlocProvider(providers: [
     BlocProvider(
       create: (_) => GpsBloc(),
+    ),
+    BlocProvider(
+      create: (_) => LocationBloc(),
     )
   ], child: const MyApp()));
 }

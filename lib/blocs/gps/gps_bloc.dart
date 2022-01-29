@@ -11,22 +11,21 @@ part 'gps_state.dart';
 class GpsBloc extends Bloc<GpsEvent, GpsState> {
   StreamSubscription? streamSubscription;
 
-  GpsBloc() : super(const GpsInitialState(gpsStatus: false)) {
-    on<TurnOnGps>((event, emit) {
-      emit(const GpsIsOn());
+  GpsBloc()
+      : super(const GpsState(gpsStates: false, isPermitionGranted: false)) {
+    on<ChangeGpsState>((event, emit) {
+      emit(state.copyWith(gpsStates: event.gpsState));
     });
-    on<TurnOffGps>((event, emit) {
-      emit(const GpsIsOff());
-    });
-    on<AllowGpsAccessEvent>((event, emit) {
-      emit(const GpsPermissionIsGranted());
+
+    on<ChangeGpsAccess>((event, emit) {
+      emit(state.copyWith(isPermitionGranted: event.isGranted));
     });
 
     init();
   }
 
   Future<void> init() async {
-    _gpsStatus().then((_) => _gpsPermissionStatus());
+    await _gpsStatus().then((_) => _gpsPermissionStatus());
   }
 
   Future<void> askGpsAccess() async {
@@ -34,27 +33,30 @@ class GpsBloc extends Bloc<GpsEvent, GpsState> {
 
     switch (permissionStatus) {
       case PermissionStatus.granted:
-        add(AllowGpsAccessEvent());
+        add(const ChangeGpsAccess(isGranted: true));
         break;
       case PermissionStatus.denied:
       case PermissionStatus.restricted:
       case PermissionStatus.limited:
       case PermissionStatus.permanentlyDenied:
+        add(const ChangeGpsAccess(isGranted: false));
         openAppSettings();
     }
   }
 
   Future<void> _gpsStatus() async {
     streamSubscription = Geolocator.getServiceStatusStream().listen((event) {
-      event.index == 1 ? add(const TurnOnGps()) : add(const TurnOffGps());
+      event.index == 1
+          ? add(const ChangeGpsState(gpsState: true))
+          : add(const ChangeGpsState(gpsState: false));
     });
 
     final isEnabled = await Geolocator.isLocationServiceEnabled();
 
     if (isEnabled == true) {
-      add(const TurnOnGps());
+      add(const ChangeGpsState(gpsState: true));
     } else {
-      add(const TurnOffGps());
+      add(const ChangeGpsState(gpsState: false));
     }
   }
 
@@ -62,7 +64,9 @@ class GpsBloc extends Bloc<GpsEvent, GpsState> {
     final statusIsGranted = await Permission.location.isGranted;
 
     if (statusIsGranted) {
-      add(AllowGpsAccessEvent());
+      // add(const ChangeGpsState(gpsState: false));
+      // print('test');
+      add(const ChangeGpsAccess(isGranted: true));
     }
   }
 
