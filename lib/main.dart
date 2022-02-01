@@ -8,12 +8,9 @@ import 'package:geo_app/screens/screens.dart';
 void main() {
   setUp();
   runApp(MultiBlocProvider(providers: [
-    BlocProvider(
-      create: (_) => GpsBloc(),
-    ),
-    BlocProvider(
-      create: (_) => LocationBloc(),
-    )
+    BlocProvider(create: (_) => GpsBloc()),
+    BlocProvider(create: (_) => LocationBloc()),
+    BlocProvider(create: (_) => MapBloc())
   ], child: const MyApp()));
 }
 

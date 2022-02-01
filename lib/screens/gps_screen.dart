@@ -17,7 +17,7 @@ class GpsAccessScreen extends StatelessWidget {
           } else if (state.gpsStates == false) {
             return const _EnableGpsMessage();
           }
-          print(state);
+
           return _LocationAccessScreen();
         },
       ),

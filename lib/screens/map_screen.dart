@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geo_app/blocs/blocs.dart';
+import 'package:geo_app/views/views.dart';
+import 'package:geo_app/widgets/widgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapScreen extends StatefulWidget {
@@ -28,17 +30,22 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: BlocBuilder<LocationBloc, LocationState>(
-      builder: (context, state) {
-        if (state.lastKnownLocation == null) {
-          return const Center(child: CircularProgressIndicator());
-        }
+    return Scaffold(
+        floatingActionButton: const BtnLocation(),
+        body: BlocBuilder<LocationBloc, LocationState>(
+          builder: (context, state) {
+            if (state.lastKnownLocation == null) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-        final CameraPosition initialCameraPosition =
-            CameraPosition(target: state.lastKnownLocation!, zoom: 15);
-
-        return GoogleMap(initialCameraPosition: initialCameraPosition);
-      },
-    ));
+            return SingleChildScrollView(
+              child: Stack(
+                children: [
+                  MapView(initalLocation: state.lastKnownLocation!),
+                ],
+              ),
+            );
+          },
+        ));
   }
 }
