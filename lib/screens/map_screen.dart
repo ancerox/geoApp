@@ -31,19 +31,43 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: const BtnLocation(),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+        floatingActionButton: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: const [
+            BtnLocation(),
+            SizedBox(height: 10),
+            BtnFollowUser(),
+            SizedBox(height: 10),
+            TogglePolylines(),
+          ],
+        ),
         body: BlocBuilder<LocationBloc, LocationState>(
-          builder: (context, state) {
-            if (state.lastKnownLocation == null) {
+          builder: (context, locationState) {
+            if (locationState.lastKnownLocation == null) {
               return const Center(child: CircularProgressIndicator());
             }
 
-            return SingleChildScrollView(
-              child: Stack(
-                children: [
-                  MapView(initalLocation: state.lastKnownLocation!),
-                ],
-              ),
+            return BlocBuilder<MapBloc, MapState>(
+              builder: (context, mapState) {
+                final Map<String, Polyline> polylines =
+                    Map.from(mapState.polylines);
+                if (!mapState.showPolylines) {
+                  polylines.removeWhere((key, value) => key == 'myRoute');
+                }
+
+                return SingleChildScrollView(
+                  child: Stack(
+                    children: [
+                      MapView(
+                          polylines: polylines.values.toSet(),
+                          initalLocation: locationState.lastKnownLocation!),
+                      const SearchBar(),
+                      const LocationMark(),
+                    ],
+                  ),
+                );
+              },
             );
           },
         ));

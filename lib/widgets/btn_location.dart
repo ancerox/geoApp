@@ -8,20 +8,23 @@ class BtnLocation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(
-      onPressed: () {
-        final lastKnownLocation =
-            BlocProvider.of<LocationBloc>(context).state.lastKnownLocation;
-
-        if (lastKnownLocation == null) {
-          ScaffoldMessenger.of(context).showSnackBar(CustomSnack());
-          return;
-        }
-
-        BlocProvider.of<MapBloc>(context).centerMap(lastKnownLocation);
-      },
+    return CircleAvatar(
       backgroundColor: Colors.white,
-      child: const Icon(Icons.person, color: Colors.black),
+      child: IconButton(
+        onPressed: () {
+          final lastKnownLocation =
+              BlocProvider.of<LocationBloc>(context).state.lastKnownLocation;
+
+          if (lastKnownLocation == null) {
+            ScaffoldMessenger.of(context).showSnackBar(CustomSnack());
+            return;
+          }
+
+          BlocProvider.of<MapBloc>(context).centerMap(lastKnownLocation);
+        },
+        color: Colors.white,
+        icon: const Icon(Icons.person, color: Colors.black),
+      ),
     );
   }
 }
