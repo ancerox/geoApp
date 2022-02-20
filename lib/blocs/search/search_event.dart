@@ -10,3 +10,15 @@ abstract class SearchEvent extends Equatable {
 class OnShowMarkEvent extends SearchEvent {}
 
 class OffShowMarkEvent extends SearchEvent {}
+
+class OnLookForPlaces extends SearchEvent {
+  final List<PlaceFeature> places;
+
+  const OnLookForPlaces(this.places);
+}
+
+class OnSavePlaces extends SearchEvent {
+  final PlaceFeature place;
+
+  const OnSavePlaces(this.place);
+}

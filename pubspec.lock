@@ -197,6 +197,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.1"
+  dartz:
+    dependency: "direct dev"
+    description:
+      name: dartz
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.10.1"
   diff_match_patch:
     dependency: transitive
     description:
@@ -204,6 +211,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.1"
+  dio:
+    dependency: "direct dev"
+    description:
+      name: dio
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.4"
   equatable:
     dependency: "direct main"
     description:
@@ -338,6 +352,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.5"
+  google_polyline_algorithm:
+    dependency: "direct dev"
+    description:
+      name: google_polyline_algorithm
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.0"
   graphs:
     dependency: transitive
     description:

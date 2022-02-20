@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:geo_app/blocs/map/map_bloc.dart';
+import 'package:geo_app/helpers/bitmark.dart';
 import 'package:geolocator/geolocator.dart';
 import 'dart:async';
 
@@ -10,6 +12,8 @@ part 'location_state.dart';
 
 class LocationBloc extends Bloc<LocationEvent, LocationState> {
   StreamSubscription? locationStream;
+
+  // final MapBloc mapbloc;
 
   LocationBloc() : super(const LocationState()) {
     on<OnFollowingUser>((event, emit) {
@@ -25,25 +29,28 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
           locationHistory: [...state.locationHistory, event.newLocation]));
     });
   }
-
-  Future getCurrentLocation() async {
-    final location = await Geolocator.getCurrentPosition();
-    add(
-      OnNewUserLocationEvent(
-        LatLng(location.latitude, location.longitude),
-      ),
-    );
-  }
-
   void startFollowUser() {
+    add(OnFollowingUser());
+
     Geolocator.getPositionStream().listen((event) {
       final position = event;
+
       add(
         OnNewUserLocationEvent(
-          LatLng(position.latitude, position.longitude),
+          newLocation: LatLng(position.latitude, position.longitude),
         ),
       );
     });
+  }
+
+  Future getCurrentLocation() async {
+    final location = await Geolocator.getCurrentPosition();
+
+    add(
+      OnNewUserLocationEvent(
+        newLocation: LatLng(location.latitude, location.longitude),
+      ),
+    );
   }
 
   void stopFollowUser() {

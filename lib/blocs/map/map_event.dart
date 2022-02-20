@@ -23,3 +23,16 @@ class OnNewPolyLines extends MapEvent {
 }
 
 class OnTogglePolylines extends MapEvent {}
+
+class OnDrawnewPolylines extends MapEvent {
+  final Map<String, Polyline>? polylines;
+  final Map<String, Marker>? markers;
+
+  const OnDrawnewPolylines({this.markers, this.polylines});
+}
+
+class OnEmitGpsIcon extends MapEvent {
+  final BitmapDescriptor gpsIcon;
+
+  const OnEmitGpsIcon(this.gpsIcon);
+}

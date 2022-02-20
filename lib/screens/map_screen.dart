@@ -42,34 +42,10 @@ class _MapScreenState extends State<MapScreen> {
             TogglePolylines(),
           ],
         ),
-        body: BlocBuilder<LocationBloc, LocationState>(
-          builder: (context, locationState) {
-            if (locationState.lastKnownLocation == null) {
-              return const Center(child: CircularProgressIndicator());
-            }
-
-            return BlocBuilder<MapBloc, MapState>(
-              builder: (context, mapState) {
-                final Map<String, Polyline> polylines =
-                    Map.from(mapState.polylines);
-                if (!mapState.showPolylines) {
-                  polylines.removeWhere((key, value) => key == 'myRoute');
-                }
-
-                return SingleChildScrollView(
-                  child: Stack(
-                    children: [
-                      MapView(
-                          polylines: polylines.values.toSet(),
-                          initalLocation: locationState.lastKnownLocation!),
-                      const SearchBar(),
-                      const LocationMark(),
-                    ],
-                  ),
-                );
-              },
-            );
-          },
-        ));
+        body: Stack(children: [
+          MapView(),
+          const SearchBar(),
+          const LocationMark(),
+        ]));
   }
 }

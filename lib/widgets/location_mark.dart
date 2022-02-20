@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geo_app/blocs/blocs.dart';
+import 'package:geo_app/helpers/helpers.dart';
 
 class LocationMark extends StatelessWidget {
   const LocationMark({Key? key}) : super(key: key);
@@ -62,10 +63,32 @@ class _ConfirmButton extends StatelessWidget {
         height: 50,
         width: 300,
         child: MaterialButton(
-            shape: StadiumBorder(),
-            onPressed: () {},
+            shape: const StadiumBorder(),
+            onPressed: () async {
+//Todo: LoadingScreen
+              final locationBloc = BlocProvider.of<LocationBloc>(context);
+              final searchBloc = BlocProvider.of<SearchBloc>(context);
+              final mapBloc = BlocProvider.of<MapBloc>(context);
+
+              final start = locationBloc.state.lastKnownLocation;
+              final end = mapBloc.mapCenter;
+              // Loading widget
+              showLoadingMessage(context);
+
+              // Save the new polyLine
+              final mapCoating =
+                  await searchBloc.getNewsCorsStartEnd(start, end);
+
+              // Draw the polyLine
+              mapBloc.drawPolylines(mapCoating);
+
+              // Take off Marks
+              searchBloc.add(OffShowMarkEvent());
+
+              Navigator.pop(context);
+            },
             color: Colors.black,
-            child: Text(
+            child: const Text(
               'Confirm Location',
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.w400),
