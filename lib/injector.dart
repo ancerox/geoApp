@@ -1,5 +1,3 @@
-import 'package:geo_app/blocs/blocs.dart';
-
 import 'package:get_it/get_it.dart';
 
 import 'data/datasources/remote/map_coating_datasoruce.dart';
@@ -10,6 +8,7 @@ import 'package:dio/dio.dart';
 
 import 'domain/usecases/get_places_by_cors.dart';
 import 'domain/usecases/get_places_by_places.dart';
+import 'presentation/blocs/blocs.dart';
 
 final locator = GetIt.instance;
 

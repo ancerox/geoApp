@@ -1,7 +1,7 @@
 import 'dart:ui' as ui;
 
-import 'package:geo_app/markers/end_marker.dart';
-import 'package:geo_app/markers/star_marker.dart';
+import 'package:geo_app/presentation/markers/end_marker.dart';
+import 'package:geo_app/presentation/markers/star_marker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 Future<BitmapDescriptor> getStartCustomMarker(

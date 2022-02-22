@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geo_app/blocs/blocs.dart';
-import 'package:geo_app/delegate/delegastes.dart';
+
 import 'package:geo_app/models/search_delegate_model.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:geo_app/presentation/blocs/blocs.dart';
+import 'package:geo_app/presentation/delegate/search_delegate.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar({Key? key}) : super(key: key);

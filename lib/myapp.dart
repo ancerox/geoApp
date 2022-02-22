@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geo_app/blocs/blocs.dart';
 
 import 'package:geo_app/injector.dart';
-import 'package:geo_app/screens/screens.dart';
+import 'package:geo_app/presentation/screens/gps_screen.dart';
 
 import 'domain/usecases/get_coors_start_end.dart';
+import 'presentation/blocs/blocs.dart';
 
 void main() {
   setUp();

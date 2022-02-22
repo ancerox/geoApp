@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geo_app/blocs/blocs.dart';
+
 import 'package:geo_app/helpers/helpers.dart';
+import 'package:geo_app/presentation/blocs/blocs.dart';
 
 class LocationMark extends StatelessWidget {
   const LocationMark({Key? key}) : super(key: key);

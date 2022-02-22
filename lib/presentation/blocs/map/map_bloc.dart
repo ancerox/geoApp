@@ -4,13 +4,15 @@ import 'dart:convert';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:geo_app/blocs/location/location_bloc.dart';
+
 import 'package:geo_app/core/erros/failure.dart';
 import 'package:geo_app/domain/entities/maps_coating_entity.dart';
 import 'package:geo_app/domain/entities/place_feature.dart';
 import 'package:geo_app/helpers/bitmark.dart';
 import 'package:geo_app/helpers/widget_to_,marker.dart';
-import 'package:geo_app/themes/themes.dart';
+import 'package:geo_app/presentation/blocs/blocs.dart';
+import 'package:geo_app/themes_map/themes.dart';
+
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_polyline_algorithm/google_polyline_algorithm.dart';
 import 'package:dartz/dartz.dart';

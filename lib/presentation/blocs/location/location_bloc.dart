@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:geo_app/blocs/map/map_bloc.dart';
-import 'package:geo_app/helpers/bitmark.dart';
+
 import 'package:geolocator/geolocator.dart';
 import 'dart:async';
 

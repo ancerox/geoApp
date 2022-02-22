@@ -1,11 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:geo_app/blocs/map/map_bloc.dart';
 import 'package:geo_app/core/erros/failure.dart';
 import 'package:geo_app/domain/entities/maps_coating_entity.dart';
 import 'package:geo_app/domain/entities/place_feature.dart';
 import 'package:geo_app/domain/usecases/get_coors_start_end.dart';
 import 'package:geo_app/domain/usecases/get_places_by_places.dart';
+import 'package:geo_app/presentation/blocs/blocs.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:dartz/dartz.dart';
 

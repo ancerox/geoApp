@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geo_app/blocs/blocs.dart';
+
 import 'package:geo_app/injector.dart';
-import 'package:geo_app/screens/map_screen.dart';
+import 'package:geo_app/presentation/blocs/blocs.dart';
+import 'package:geo_app/presentation/screens/map_screen.dart';
 
 class GpsAccessScreen extends StatelessWidget {
   const GpsAccessScreen({Key? key}) : super(key: key);

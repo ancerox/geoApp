@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geo_app/blocs/blocs.dart';
+
 import 'package:geo_app/domain/entities/place_feature.dart';
 import 'package:geo_app/models/models.dart';
+import 'package:geo_app/presentation/blocs/blocs.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class SeachLocationDelegate extends SearchDelegate<SearchDelegateModel> {

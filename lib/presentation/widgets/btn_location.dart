@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geo_app/blocs/blocs.dart';
-import 'package:geo_app/ui/custom_snack.dart';
+
+import 'package:geo_app/presentation/blocs/blocs.dart';
+import 'package:geo_app/presentation/ui/custom_snack.dart';
 
 class BtnLocation extends StatelessWidget {
   const BtnLocation({Key? key}) : super(key: key);
