@@ -7,19 +7,6 @@ import 'package:geo_app/presentation/screens/gps_screen.dart';
 import 'domain/usecases/get_coors_start_end.dart';
 import 'presentation/blocs/blocs.dart';
 
-void main() {
-  setUp();
-  runApp(MultiBlocProvider(providers: [
-    BlocProvider(create: (_) => locator<SearchBloc>()),
-    BlocProvider(create: (_) => GpsBloc()),
-    BlocProvider(create: (_) => LocationBloc()),
-    BlocProvider(
-        create: (context) => MapBloc(
-            locationBloc: BlocProvider.of<LocationBloc>(context),
-            getPlacesByCoors: locator()))
-  ], child: const MyApp()));
-}
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 

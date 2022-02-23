@@ -36,3 +36,8 @@ class OnEmitGpsIcon extends MapEvent {
 
   const OnEmitGpsIcon(this.gpsIcon);
 }
+
+class ChangePolylineColor extends MapEvent {
+  final Color color;
+  const ChangePolylineColor(this.color);
+}

@@ -8,13 +8,13 @@
             "name": "Flutter Dev",
             "request": "launch",
             "type": "dart",
-            "prgram": "lib/main_dev.dart"
+            "program": "lib/main_dev.dart"
         },
         {
             "name": "Flutter Prod",
             "request": "launch",
             "type": "dart",
-            "prgram": "lib/main_prod.dart"
+            "program": "lib/main_prod.dart"
         },
         {
             "name": "geo_app (profile mode)",

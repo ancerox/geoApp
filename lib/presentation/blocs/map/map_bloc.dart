@@ -18,6 +18,8 @@ import 'package:google_polyline_algorithm/google_polyline_algorithm.dart';
 import 'package:dartz/dartz.dart';
 import 'package:geo_app/domain/usecases/get_places_by_cors.dart';
 
+import '../../../config_reader.dart';
+
 part 'map_event.dart';
 part 'map_state.dart';
 
@@ -90,7 +92,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
 
     final myRoute = Polyline(
         polylineId: const PolylineId('route'),
-        color: Colors.black,
+        color: ConfigReader.getBoolTheme() ? Colors.red : Colors.black,
         endCap: Cap.roundCap,
         startCap: Cap.roundCap,
         width: 5,
